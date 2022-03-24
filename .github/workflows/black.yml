@@ -10,3 +10,4 @@ jobs:
       - uses: psf/black@stable
         with:
           src: "./fortuna"
+      - run: black
