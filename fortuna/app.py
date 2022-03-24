@@ -10,7 +10,7 @@ class App(tk.Tk):
         super().__init__()
 
         # root window configuration
-        self.title('Fortuna')
+        self.title('Fortuna (Skat)')
         self.geometry('700x300')
         #self.grid_rowconfigure(0, weight=1)
         #self.grid_columnconfigure(0, weight=1)
