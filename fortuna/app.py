@@ -1,6 +1,8 @@
 import tkinter as tk
 from tkinter import ttk
 
+from frames.skat import SkatFrame
+
 class App(tk.Tk):
     
 
@@ -9,11 +11,15 @@ class App(tk.Tk):
 
         # root window configuration
         self.title('Fortuna')
-        self.geometry('800x400')
-        self.grid_rowconfigure(0, 
-class MainFrame(ttk.Frame):
+        self.geometry('700x300')
+        #self.grid_rowconfigure(0, weight=1)
+        #self.grid_columnconfigure(0, weight=1)
 
 
+if __name__ == '__main__':
+    players = ['Nate', 'Matt', 'Josh']
+    app = App()
+    frame_skat = SkatFrame(app, players)
+    frame_skat.grid(row=0, column=0)
 
-app = App()
-app.mainloop()
+    app.mainloop()
