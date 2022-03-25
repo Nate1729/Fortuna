@@ -18,10 +18,10 @@ class SkatFrame(ttk.Frame):
         super().__init__(master=parent)
 
         self.frame_bid = BidFrame(self, players)
-        self.frame_bid.grid(row=1, column=0, padx=10, pady=10)
+        self.frame_bid.grid(row=0, column=0, rowspan=2, padx=10, pady=10)
         
         self.frame_score = ScoreFrame(self, players)
-        self.frame_score.grid(row=0, column=0, columnspan=2, pady=10)
+        self.frame_score.grid(row=0, column=1, pady=10)
 
         self.frame_history = HistoryFrame(self)
         self.frame_history.grid(row=1, column=1, padx=10)
@@ -46,25 +46,26 @@ class BidFrame(ttk.Frame):
 
         # Bid row
         ttk.Label(self, text="Bid").grid(row=1, column=0, pady=10)
-        self.e_bid = ttk.Entry(self, width=11).grid(row=1, column=1, pady=5)
+        self.e_bid = ttk.Entry(self, width=11)
+        self.e_bid.grid(row=1, column=1, pady=5)
 
         # Game Row
-        ttk.Label(self, text="Game").grid(row=1, column=0, pady=5)
+        ttk.Label(self, text="Game").grid(row=2, column=0, pady=5)
         self.combo_game = ttk.Combobox(self, width=10, state='readonly')
-        self.combo_game.grid(row=1, column=1, padx=5, pady=10)
+        self.combo_game.grid(row=2, column=1, padx=5, pady=10)
         self.combo_game['values'] = tuple([name for name in Game._member_names_])
         self.combo_game.bind('<<ComboboxSelected>>', self.handle_game_change)
 
         # Announcement row
-        ttk.Label(self, text="Declare").grid(row=2, column=0)
+        ttk.Label(self, text="Declare").grid(row=3, column=0)
         self.combo_declare = ttk.Combobox(self, width=10, state='readonly')
-        self.combo_declare.grid(row=2, column=1, padx=5, pady=10)
+        self.combo_declare.grid(row=3, column=1, padx=5, pady=10)
         self.combo_declare.set('None') 
 
         # Result row
-        ttk.Label(self, text="Result").grid(row=3, column=0, pady=5)
+        ttk.Label(self, text="Result").grid(row=4, column=0, pady=5)
         self.combo_result = ttk.Combobox(self, width=10, state='readonly')
-        self.combo_result.grid(row=3, column=1, padx=5, pady=10)
+        self.combo_result.grid(row=4, column=1, padx=5, pady=10)
        
         # With/without row
         self.button_with = ttk.Button(
@@ -73,13 +74,13 @@ class BidFrame(ttk.Frame):
                 width=7,
                 command=self.handle_with_button
                 )
-        self.button_with.grid(row=4, column=0)
+        self.button_with.grid(row=5, column=0)
         self.spin_with = ttk.Spinbox(self, from_=1, width=9, state='disabled')
-        self.spin_with.grid(row=4, column=1, padx=5, pady=5)
+        self.spin_with.grid(row=5, column=1, padx=5, pady=5)
 
         # Submit row
         self.button_submit = ttk.Button(self, text="Submit", width=15, command=self.handle_submit)
-        self.button_submit.grid(row=5, column=0, columnspan=2, pady=5)
+        self.button_submit.grid(row=6, column=0, columnspan=2, pady=5)
 
 
     def handle_game_change(self, event):
