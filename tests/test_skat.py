@@ -28,7 +28,7 @@ class TestHistoryFrame(unittest.TestCase):
 class TestBidFrame(unittest.TestCase):
     def setUp(self):
         self.root = tk.Tk()
-        self.players = ['Player 1', 'Player 2', 'Player 3']
+        self.players = ('Player 1', 'Player 2', 'Player 3') # should be a tuple
         self.test_frame = skat.BidFrame(self.root, self.players)
 
     def tearDown(self):
@@ -39,3 +39,4 @@ class TestBidFrame(unittest.TestCase):
 
     def test_bidder_values(self):
         self.assertEqual(self.test_frame.combo_player['values'], self.players)
+
