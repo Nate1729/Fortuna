@@ -3,10 +3,11 @@ import tkinter as tk
 
 from fortuna.frames import skat
 
+
 class TestHistoryFrame(unittest.TestCase):
     def setUp(self):
         self.root = tk.Tk()
-    
+
     def tearDown(self):
         if self.root:
             self.root.destroy()
@@ -14,21 +15,23 @@ class TestHistoryFrame(unittest.TestCase):
     def test_table_header(self):
         history = skat.HistoryFrame(self.root)
         history.grid(row=0, column=0)
-        columns = ("Bidder",
+        columns = (
+            "Bidder",
             "Bid",
             "Game",
             "Declared",
             "Result",
             "With",
             "Scored",
-            )
- 
-        self.assertTupleEqual(history.history_tree['columns'], columns)
+        )
+
+        self.assertTupleEqual(history.history_tree["columns"], columns)
+
 
 class TestBidFrame(unittest.TestCase):
     def setUp(self):
         self.root = tk.Tk()
-        self.players = ('Player 1', 'Player 2', 'Player 3') # should be a tuple
+        self.players = ("Player 1", "Player 2", "Player 3")  # should be a tuple
         self.test_frame = skat.BidFrame(self.root, self.players)
 
     def tearDown(self):
@@ -38,5 +41,4 @@ class TestBidFrame(unittest.TestCase):
             self.root.destroy()
 
     def test_bidder_values(self):
-        self.assertEqual(self.test_frame.combo_player['values'], self.players)
-
+        self.assertEqual(self.test_frame.combo_player["values"], self.players)
