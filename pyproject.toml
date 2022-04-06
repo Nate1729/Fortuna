@@ -4,6 +4,9 @@ version = "0.1.0"
 description = ""
 authors = ["Nate Ferreira <nferreira1729@gmail.com>"]
 
+[tool.poetry.scripts]
+test = 'scripts:test'
+
 [tool.poetry.dependencies]
 python = "^3.10"
 
