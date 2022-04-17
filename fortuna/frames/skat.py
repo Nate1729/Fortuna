@@ -122,8 +122,54 @@ class BidFrame(ttk.Frame):
         else:
             self.var_with.set("With")
 
-    def handle_submit(self):
-        pass
+    def handle_submit(self) -> None:
+        print(f"Input state is valid --> {self._validate_bid}")
+
+    def _validate_input(self) -> bool:
+        """Input validation for skat input"""
+
+        if self.combo_player.get() not in self.players:
+            # You have to pick a player
+            return False
+
+        if not self._validate_bid(self.var_bid.get()):
+            # need to have a valid bid number
+            return False
+
+        if self.combo_game.get() == "":
+            # Need to pick a game
+            return False
+
+        if self.combo_result.get() == "":
+            # Need to have some result
+            return False
+
+        if self.combo_game.get() == "NULL":
+            # Don't need to validate with field
+            return True
+
+        if self.spin_with.get() == 0:
+            return False
+
+        return True
+
+    @staticmethod
+    def _validate_bid(bid: int) -> bool:
+        # Needs to be positive
+        # Mutiple of 9, 10, 11, 12, or 24
+        # OR
+        # 23, 46, 35, 59
+
+        if bid < 18:
+            return False
+
+        if not (bid % 9 and bid % 10 and bid % 11 and bid % 12 and bid % 24):
+            return False
+
+        if bid not in [23, 46, 35, 59]:
+            return False
+
+        return True
 
 
 class HistoryFrame(ttk.Frame):
@@ -156,6 +202,9 @@ class HistoryFrame(ttk.Frame):
             self.history_tree.heading(col, text=col)
 
         self.history_tree.grid(row=0, column=0)
+
+        def insert_item(self):
+            pass
 
 
 class ScoreFrame(ttk.Frame):
