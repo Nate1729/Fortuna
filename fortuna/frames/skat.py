@@ -9,6 +9,7 @@ class Game(Enum):
     DIAMONDS = auto()
     HEARTS = auto()
     SPADES = auto()
+    CLUBS = auto()
     GRAND = auto()
     NULL = auto()
 
